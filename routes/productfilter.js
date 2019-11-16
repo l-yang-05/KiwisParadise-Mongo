@@ -1,39 +1,30 @@
 
 const router = require('express').Router()
-const mysql = require('mysql')
-
-// Connects to mysql db to server
-const connection = mysql.createConnection({
-    host: process.env.host,
-    port: 3306,
-    user: process.env.user,
-    password: process.env.MYPASSWORD,
-    database: "ecom_db"
-})
-
-connection.connect((err) => {
-    if (err) throw err
-})
+const Products = require('../models/products')
 
 // Defining api route for /api/productfilter
 router.get('/productfilter', (req, res) => {
     const { type, price } = req.query
 
-    let sqlQuery = 'SELECT ecom_db.Products.products_id, ecom_db.Products.product_name, ecom_db.Products.product_desc, ecom_db.Products.product_type, ecom_db.Products.img, ecom_db.Products.alt, ecom_db.Price.price, ecom_db.Price.currency FROM ecom_db.Price INNER JOIN ecom_db.Products ON (ecom_db.Price.Products_products_id = ecom_db.Products.products_id) WHERE 1 ';
     if (price && !type) {
-        sqlQuery += `AND ecom_db.Price.price = "${price}"`
-    } else if (type && !price) {
-        sqlQuery += `AND ecom_db.Products.product_type = "${type}"`
-    } else if (type && price) {
-        sqlQuery += `AND ecom_db.Price.price = "${price}" AND ecom_db.Products.product_type = "${type}"`
-    }
-    connection.query(sqlQuery, [],
-        (err, data) => {
-            if (err || data.length === 0) {
-                res.status(404).send({ error: `You entered in an invalid query` })
-            }
-            res.json(data)
+        Products.find({ price: price }, (err, data) => {
+            if (err) console.log("Failed to retrieve price")
+            console.log("Price was recieved")
+            res.send(data)
         })
+    } else if (type && !price) {
+        Products.find({ product_type: type }, (err, data) => {
+            if (err) console.log("Failed to retrieve all type")
+            console.log("Type was retrieved")
+            res.send(data)
+        })
+    } else if (type && price) {
+        Products.find({ product_type: type, price: price }, (err, data) => {
+            if (err) console.log("Both are not working :(")
+            console.log("Both filters are recieved")
+            res.send(data)
+        })
+    }
 })
 
 module.exports = router
