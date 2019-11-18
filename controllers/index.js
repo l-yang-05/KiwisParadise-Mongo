@@ -1,4 +1,4 @@
-const User = require('../models/users.js')
+const User = require('../models/users')
 const signToken = require('../auth').signToken
 
 module.exports = {
@@ -15,7 +15,6 @@ module.exports = {
             res.json(user)
         })
     },
-
     // create a new user
     create: (req, res) => {
         User.create(req.body, (err, user) => {

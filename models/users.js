@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true }
-})
+}, { collection: 'users' })
 
 // adds a method to a user document object to create a hashed password
 userSchema.methods.generateHash = function (password) {
@@ -31,5 +31,5 @@ userSchema.pre('save', function (next) {
     }
 })
 
-const User = mongoose.model('User', userSchema)
-module.exports = User
+const users = mongoose.model('users', userSchema)
+module.exports = users

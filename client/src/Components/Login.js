@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
+import httpClient from '../httpClient';
 
 // Passing state from parent component (Contacts pg component)
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [fields, setFields] = useState({ user: '', password: '' })
 
     const onInputChange = (e) => {
-        setEmail(e.target.value)
-        setPassword(e.target.value)
+        setFields({ user: e.target.name, password: e.target.value })
     }
 
     const loginSubmit = (e) => {
         e.preventDefault()
+        httpClient.login(fields)
+            .then(user => {
+                setFields({ user: '', password: '' })
+                if (user) {
+
+                }
+            })
 
     }
 

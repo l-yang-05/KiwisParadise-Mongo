@@ -311,7 +311,9 @@ textarea {
 }
 
 .test-container{
-  display: flex;
+  display: grid;
+  grid-template-columns:auto auto auto ;
+  grid-gap: 15px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -473,9 +475,8 @@ svg:hover{
 
   .test-container{
     margin:0;
-    padding:5%;
-    display: grid;
-    grid-auto-columns: auto;
+    padding:8%;
+    display: flex;
   }
 
 

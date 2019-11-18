@@ -11,4 +11,17 @@ router.get('/contacts', (req, res) => {
     })
 })
 
+router.post('/contacts', (req, res, next) => {
+    const body = req.body;
+    Contacts.create(body)
+        .then(user => {
+            res.json(user)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
+
+
 module.exports = router

@@ -25,7 +25,9 @@ const Contact = () => {
             alert(`Thank you ${full_name} for sending us a message!`)
         })
         console.log(data)
+        contactsAPI()
         e.target.reset()
+
     };
 
     // Function fetches api/contacts that is used to get contacts to display onto testimonial component
@@ -45,7 +47,7 @@ const Contact = () => {
     res.body to send to api and then to mysql database */
     const newContactAPI = async (full_name, email, message) => {
         try {
-            const res = await fetch("api/newContact", {
+            const res = await fetch("api/contacts", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -57,7 +59,8 @@ const Contact = () => {
                 })
             })
             const content = await res.json()
-            console.log(content);
+            console.log(content)
+
         }
         catch (error) {
             throw error;
@@ -75,7 +78,7 @@ const Contact = () => {
             <h1>Contact Us!</h1>
             <div className="form-wrapper">
                 <fieldset>
-                    <form id="form-val" onSubmit={handleSubmit(onSubmit)} method="post" action="api/newContact">
+                    <form id="form-val" onSubmit={handleSubmit(onSubmit)} method="post" action="api/contacts">
 
                         <label htmlFor="fname">Full Name</label>
                         <input type="text" placeholder="Full Name" name="full_name" id="fname" ref={register({ required: true, min: 5, pattern: /^[a-zA-z']([^0-9]*)$/ })} />

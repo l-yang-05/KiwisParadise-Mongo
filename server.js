@@ -16,6 +16,7 @@ const app = express()
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/auth'
 const PORT = process.env.port || 5000
 
+mongoose.set('useCreateIndex', true)
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "eCommerce" }, (err) => {
     console.log(err || 'Connected to MongoDB')
 })
@@ -37,12 +38,14 @@ const rootAPI = require('./routes/rootAPI')
 const productsAPI = require('./routes/apiproducts')
 const productFilter = require('./routes/productfilter')
 const contact = require('./routes/contact')
+const usersAPI = require('./routes/index')
 // const newContact = require('./routes/apiNewContact')
 
 // Use the imported routes so that they can be called on server
 app.use("/api", productsAPI)
 app.use("/api", productFilter)
 app.use("/api", contact)
+app.use("/api/users", usersAPI)
 // app.use("/api", newContact)
 app.use('/', rootAPI)
 
