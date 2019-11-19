@@ -1,41 +1,76 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import routes from './routes';
-import { useRoutes, A } from 'hookrouter';
-import PageNotFound from './Components/pageNotFound';
-import Footer from './Components/Footer';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import httpClient from './httpClient';
+import NavBar from './Components/NavBar';
+import LogIn from './Components/Login';
+import LogOut from './Components/Logout';
+import SignUp from './Components/Signup';
+import Users from './Components/Admin/user'
+import Home from './Components/Home'
+import Products from './Components/Products'
+import Contacts from './Components/Contact'
+import Footer from './Components/Footer'
 
-const App = () => {
-  const [hidden, setHidden] = useState(false)
-  const routeResults = useRoutes(routes);
+class App extends React.Component {
+  state = { currentUser: httpClient.getCurrentUser() }
 
-  const toggleButton = () => {
-    if (!hidden) {
-      setHidden(true)
-    } else {
-      setHidden(false)
-    }
+  onLoginSuccess(user) {
+    this.setState({ currentUser: httpClient.getCurrentUser() })
   }
-  return (
-    <div>
-      <header>
-        <nav className="navbar bg-custom">
-          <label className="burger" htmlFor="toggle">&#9776;</label>
-          <input type="checkbox" id="toggle" name="toggle" onClick={toggleButton} />
-          <A className="logo-name" href="/"><img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Font_Awesome_5_solid_kiwi-bird.svg/1152px-Font_Awesome_5_solid_kiwi-bird.svg.png" alt="logo" />Kiwi's Paradise</A>
-          <span className={hidden ? 'hidden' : 'links'} >
-            <A className="navbar-item nounderline" href="/">Home</A>
-            <A className="navbar-item nounderline" href="/products">Products</A>
-            <A className="navbar-item nounderline" href="/contact">Contact</A>
-          </span>
-        </nav>
-      </header>
+
+  logOut() {
+    httpClient.logOut()
+    this.setState({ currentUser: null })
+  }
+
+  render() {
+    const { currentUser } = this.state
+    return (
       <div>
-        {routeResults || <PageNotFound />}
+        <React.Fragment >
+          <BrowserRouter>
+
+            <NavBar currentUser={currentUser} />
+            <Switch>
+
+              <Route path="/login" render={(props) => {
+                return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
+              }} />
+
+              <Route path="/logout" render={(props) => {
+                return <LogOut onLogOut={this.logOut.bind(this)} />
+              }} />
+
+              {/* the sign up component takes an 'onSignUpSuccess' prop which will perform the same thing as onLoginSuccess: set the state to contain the currentUser */}
+              <Route path="/signup" render={(props) => {
+                return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
+              }} />
+
+              <Route path="/products" render={() => {
+                return <Products />
+              }} />
+
+              <Route path="/contacts" render={() => {
+                return <Contacts />
+              }} />
+
+              <Route path='/users' render={() => {
+                return currentUser
+                  ? <Users />
+                  : <Redirect to="/login" />
+              }}
+              />
+
+              <Route path="/" component={Home} />
+
+            </Switch>
+          </BrowserRouter>
+          <Footer />
+        </React.Fragment>
       </div>
-      <Footer />
-    </div >
-  )
+    )
+  }
 }
 
-export default App;
+export default App

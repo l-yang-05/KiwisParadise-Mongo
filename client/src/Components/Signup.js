@@ -1,9 +1,10 @@
 import React from 'react'
 import httpClient from '../httpClient'
 
-class LogIn extends React.Component {
+// sign up form behaves almost identically to log in form. We could create a flexible Form component to use for both actions, but for now we'll separate the two:
+class SignUp extends React.Component {
     state = {
-        fields: { email: '', password: '' }
+        fields: { name: '', email: '', password: '' }
     }
 
     onInputChange(evt) {
@@ -17,32 +18,39 @@ class LogIn extends React.Component {
 
     onFormSubmit(evt) {
         evt.preventDefault()
-        httpClient.logIn(this.state.fields).then(user => {
-            this.setState({ fields: { email: '', password: '' } })
+        httpClient.signUp(this.state.fields).then(user => {
+            this.setState({ fields: { name: '', email: '', password: '' } })
             if (user) {
-                this.props.onLoginSuccess(user)
+                this.props.onSignUpSuccess(user)
                 this.props.history.push('/')
             }
         })
     }
 
     render() {
-        const { email, password } = this.state.fields
+        const { name, email, password } = this.state.fields
         return (
-            <div className="container-contact">
-                <h1>Log In</h1>
+            <div className='container-contact'>
+                <h1>Sign Up</h1>
                 <div className="form-wrapper">
-                    <form id="form-val" onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+                    <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
+
+                        <label htmlFor="name">Name</label>
+                        <input type="text" placeholder="Name" name="name" value={name} />
+
                         <label htmlFor="email">Email</label>
                         <input type="text" placeholder="Email" name="email" value={email} />
+
                         <label htmlFor="password">Password</label>
                         <input type="password" placeholder="Password" name="password" value={password} />
-                        <button type="submit">Log In</button>
+
+                        <button type="submit">Sign Up</button>
                     </form>
                 </div>
+
             </div>
         )
     }
 }
 
-export default LogIn
+export default SignUp

@@ -4,14 +4,49 @@ const usersCtrl = require('../controllers')
 const verifyToken = require('../auth').verifyToken
 
 const usersRouter = new express.Router()
+const router = new express.Router()
+const Products = require('../models/products')
+
 
 usersRouter.route('/').get(usersCtrl.index)
 
 usersRouter.route('/').post(usersCtrl.create)
 
+router.get('/products', async (req, res) => {
+    try {
+        let products = await Products.find();
+        return res.send(products)
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
+
+router.get('/contacts', async (req, res) => {
+    try {
+        let contact = await contacts.find();
+        return res.send(contact)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 usersRouter.post('/authenticate', usersCtrl.authenticate)
 
 usersRouter.use(verifyToken)
+
+usersRouter.use('/users', async (req, res) => {
+    try {
+        let user = await users.find();
+        return res.send(user)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
 
 usersRouter.route('/:id').get(usersCtrl.show)
 
