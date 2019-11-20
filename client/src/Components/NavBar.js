@@ -8,16 +8,18 @@ const NavBar = (props) => {
     return (
         <React.Fragment>
             <Navbar expand="md" className='pb-4'>
+                <Nav.Item className="logo-name-2"><NavLink to="/" className="logo-name-2"><img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Font_Awesome_5_solid_kiwi-bird.svg/1152px-Font_Awesome_5_solid_kiwi-bird.svg.png" alt="logo" />Kiwi's Paradise</NavLink></Nav.Item>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-
+                    <Nav.Item className="logo-name" to="/"><img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Font_Awesome_5_solid_kiwi-bird.svg/1152px-Font_Awesome_5_solid_kiwi-bird.svg.png" alt="logo" />Kiwi's Paradise</Nav.Item>
                     <Nav className="ml-auto">
-
                         {props.currentUser
                             ? (
-                                <>
-
+                                <React.Fragment>
+                                    <Nav.Item>
+                                        <NavLink to="/">Home</NavLink>
+                                    </Nav.Item>
                                     <Nav.Item>
                                         <NavLink to="/products">Products</NavLink>
                                     </Nav.Item>
@@ -28,15 +30,18 @@ const NavBar = (props) => {
                                         <NavLink to="/logout">Log Out</NavLink>
                                     </Nav.Item>
 
-                                </>
+                                </React.Fragment>
                             )
                             : (
-                                <>
+                                <React.Fragment>
+                                    <Nav.Item>
+                                        <NavLink to="/">Home</NavLink>
+                                    </Nav.Item>
                                     <Nav.Item>
                                         <NavLink to="/products">Products</NavLink>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <NavLink to="/contacts">Contact us</NavLink>
+                                        <NavLink to="/contacts">Contact Us</NavLink>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <NavLink to="/login">Log In</NavLink>
@@ -45,7 +50,7 @@ const NavBar = (props) => {
                                         <NavLink to="/signup">Sign Up</NavLink>
                                     </Nav.Item>
 
-                                </>
+                                </React.Fragment>
                             )
                         }
                     </Nav>

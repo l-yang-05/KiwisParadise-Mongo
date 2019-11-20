@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Redirect } from 'react-router-dom'
 
 class LogOut extends React.Component {
 
@@ -8,7 +8,7 @@ class LogOut extends React.Component {
     }
 
     render() {
-        return window.location = "/login"
+        return <Redirect to="/login" />
     }
 }
 

@@ -18,9 +18,14 @@
   display: none;
 }
 .navbar a{
-  color:white;
-  margin:4%;
-  font-size:20px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px;
 }
 .nounderline{
   text-decoration: none !important;
@@ -32,7 +37,7 @@
 
 .logo{
   height:40px;
-  width:auto;
+  width:50px;
   font-weight: bold;
   filter: brightness(0) invert(1);
   padding: 5px;
@@ -41,8 +46,21 @@
 .logo-name{
   margin: 0 !important;
   color: white !important;
+  font-size: 23px;
+  font-style: italic;
+  text-shadow: #e36fad 2px 2px 5px;
   text-decoration: none !important;
 }
+
+.logo-name-2{
+  display:none;
+  color: white !important;
+  text-decoration: none !important;
+  margin: 0 !important;
+  text-shadow: #e36fad 2px 2px 5px;
+}
+
+
 .burger{
   margin-right: 30px;
   float: right;
@@ -143,6 +161,11 @@ hr{
 .card p {
   padding: 5px;
   width: 90%;
+}
+
+
+.container-auth{
+  height: 600px;
 }
 
 /* --------------------- Products pg styling Starts HERE --------------------- */
@@ -255,6 +278,16 @@ select{
   background-size: cover;
 }
 
+.form-auth{
+  width: 50%;
+  height: 100%;
+  background-color:#EE7674;
+  padding: 15px;
+  margin: 3% 0;
+  border-radius: 20px;
+}
+
+
 .form-wrapper {
   width: 50%;
   height: 100%;
@@ -271,10 +304,20 @@ select{
   margin-top: 3%;
 }
 
+.form-auth label{
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 3%;
+}
+
 .form-wrapper textarea{
   height: 200px;
 }
 
+.form-auth textarea{
+  height: 200px;
+}
 .form-wrapper input,
 textarea {
   width: 100%;
@@ -289,6 +332,18 @@ textarea {
   margin: 2% 0;
 }
 
+.form-auth input, textarea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+  border: 2px solid white;
+  margin: 2% 0;}
+
 .form-wrapper button{
   border-radius: 5px;
   border: white 3px solid;
@@ -300,6 +355,19 @@ textarea {
   padding: 5px;
   width: 50%;
 }
+
+.form-auth button{
+  border-radius: 5px;
+  border: white 3px solid;
+  background-color: white;
+  color:#EE7674;
+  display: block;
+  margin: 0 auto;
+  margin-top: 4%;
+  padding: 5px;
+  width: 50%;
+}
+
 
 .error-msg {
   margin: 0.25em 0 0 0;
@@ -319,7 +387,7 @@ textarea {
   justify-content: center;
   align-items: center;
   margin-bottom: 25px;
-  padding:10px;
+  padding:15px;
 }
 
 .profile{
@@ -347,6 +415,16 @@ textarea {
 blockquote{
   font-style: italic;
 }
+
+
+.container-auth{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('https://i.pinimg.com/originals/18/41/2c/18412c4d7d45e777885c8e9087c2a04f.jpg');
+  background-size: cover;
+}
+
 
 
 /* --------------------- Footer styling Starts Here ------------------ */
@@ -407,7 +485,7 @@ svg:hover{
 
 @media only screen and (max-width: 768px){
   .w-100{
-    height: auto;
+    height: 380px;
   }
   .burger {
     margin-right: 30px;
@@ -425,6 +503,32 @@ svg:hover{
   .links{
     display: none;
   }
+
+  .form-auth .login{
+    margin-top: 50px;
+  }
+
+  .signup{
+    height: 90% !important;
+  }
+
+  .login{
+    margin-top:50px;
+    height: 60%;
+  }
+
+  .login button{
+    width: 85%;
+    margin-top: 50px;
+  }
+
+  .signup button{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 85%;
+  }
+
+
   .hidden{
     display: contents;
     height: 200px;
@@ -458,6 +562,11 @@ svg:hover{
     margin: 5% 0;
     width: 70%;
   }
+  .form-auth {
+    padding: 15px;
+    margin: 5% 0;
+    width: 70%;
+  }
 
 }
 
@@ -467,6 +576,27 @@ svg:hover{
     height: auto;
     font-size: 25px;
   }
+
+.form-auth .login {
+  height: 65%;
+}
+
+.signup{
+  height: 70%;
+}
+
+.logo-name{
+  display: none;
+}
+
+.logo-name-2{
+  display: block;
+  float: right;
+  font-size: 23px;
+  font-style: italic;
+  padding:0 !important;
+}
+
   .navbar-item{
     padding: 5%;
     font-size: 20px;
@@ -482,7 +612,9 @@ svg:hover{
     display: flex;
   }
 
-
+.w-100{
+  height: 280px;
+}
   .card-wrapper {
     display: grid !important;
   }
@@ -493,6 +625,10 @@ svg:hover{
 }
 
 .form-wrapper{
+  width: 80%;
+}
+
+.form-auth{
   width: 80%;
 }
 
@@ -522,6 +658,10 @@ svg:hover{
     font-size:25px;
   }
 
+  .button-auth{
+    margin-top: 30px;
+  }
+
   .para {
     font-size: 15px;
   }
@@ -532,8 +672,13 @@ svg:hover{
   height: 200px;
 }
   .navbar a{
-    margin:4%;
-    font-size:15px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
   }
   h3 {
     font-size: 10px;
@@ -553,6 +698,10 @@ svg:hover{
   }
 
   .form-wrapper input {
+    height: 20%;
+  }
+
+  .form-auth input{
     height: 20%;
   }
 

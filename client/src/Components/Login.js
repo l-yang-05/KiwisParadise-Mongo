@@ -29,15 +29,15 @@ class LogIn extends React.Component {
     render() {
         const { email, password } = this.state.fields
         return (
-            <div className="container-contact">
+            <div className="container-auth">
                 <h1>Log In</h1>
-                <div className="form-wrapper">
+                <div className="form-auth login">
                     <form id="form-val" onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
                         <label htmlFor="email">Email</label>
                         <input type="text" placeholder="Email" name="email" value={email} />
                         <label htmlFor="password">Password</label>
                         <input type="password" placeholder="Password" name="password" value={password} />
-                        <button type="submit">Log In</button>
+                        <button type="submit" className="button-auth">Log In</button>
                     </form>
                 </div>
             </div>

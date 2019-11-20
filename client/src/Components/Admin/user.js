@@ -21,7 +21,7 @@ const User = () => {
 
     return (
         <div className="container-contact">
-            <h1>Users List</h1>
+            <h1>Admin Page: Users</h1>
             <div className="container-products">
                 {admin && admin.map((user, index) => {
                     return (

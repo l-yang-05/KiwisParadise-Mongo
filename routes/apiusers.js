@@ -4,8 +4,8 @@ const Users = require('../models/users')
 // Defining api route for /api/products
 router.get('/users', (req, res) => {
     Users.find({}, (err, data) => {
-        if (err) console.log("Failed to retrieve all users")
-        console.log("Successfully to retrieve all users")
+        if (err) console.log("Failed retrieve users")
+        console.log("Successfully retrieve users")
         res.send(data)
     })
 })

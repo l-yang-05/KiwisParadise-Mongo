@@ -30,9 +30,9 @@ class SignUp extends React.Component {
     render() {
         const { name, email, password } = this.state.fields
         return (
-            <div className='container-contact'>
+            <div className='container-auth'>
                 <h1>Sign Up</h1>
-                <div className="form-wrapper">
+                <div className="form-auth signup">
                     <form onChange={this.onInputChange.bind(this)} onSubmit={this.onFormSubmit.bind(this)}>
 
                         <label htmlFor="name">Name</label>
