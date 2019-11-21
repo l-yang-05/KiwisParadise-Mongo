@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useTitle } from 'hookrouter'
 
 const User = () => {
+    useTitle("Kiwi's Paradise | Users")
     const [admin, setAdmin] = useState(null)
 
     const userAPI = async () => {
