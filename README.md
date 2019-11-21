@@ -1,6 +1,6 @@
 # Kiwi's Paradise eCommerce V2
 
-This is my third re-edition of my eCommerce website that is centered on selling plushies. This application has three pages (Home, Products, Contact Us) routed together. The home page contains a slider of images. The products page contains items that are pulled from a MYSQL database. On the products page, the user can filter through the items by type and price. The contact us page contains a form that will validate and take in responses from the user and send them back to the MYSQL database. Also on this page, at the bottom there is a testimonials section where it displays the comments that are located from the MYSQL database. This website was made by using React.js, CSS, Bootstrap, node, and express. This application has automated testing through using mocha and chai. The automated testing is running on a parallel server from the express server of the application.
+This is my fifth re-edition of my eCommerce website that is centered on selling plushies. This application has three main pages (Home, Products, Contact Us) routed together, with an authenticated protected users page. The home page contains a slider of images. The products page contains items that are pulled from a MongoDB Atlas database. On the products page, the user can filter through the items by type and price. The contact us page contains a form that will validate and take in responses from the user and send them back to the MongoDB Atlas database. Also on this page, at the bottom there is a testimonials section where it displays the comments that are located from the MongoDB Atlas database. The protected authenticated users page will display the list of users that signed up on the application. This website was made by using React.js, CSS, Bootstrap, node, express, and authenticating with JWTs. This application has automated testing through using mocha and chai. The automated testing is running on a parallel server from the express server of the application.
 
 ## Getting Started
 
@@ -31,6 +31,11 @@ To run the tests for API endpoints run the command ```npm run test```.
 * [Mocha](https://github.com/mochajs/mocha) - Used for testing application
 * [Chai](https://github.com/chaijs/chai) - Used for testing application
 * [Concurrently](https://github.com/kimmobrunfeldt/concurrently) - Used to run servers at the same time
+* [MongoDB Atlas](https://www.mongodb.com/) - Cloud database
+* [Mongoose](https://mongoosejs.com/) - Manipulation of database
+* [JWT](https://jwt.io/) - Authenticated application
+* [Heroku](https://www.heroku.com) - Deployment platform for application
+
 
 ## Author
 
