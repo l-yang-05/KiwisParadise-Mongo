@@ -13,9 +13,16 @@ const cors = require('cors')
 // Creating port variable to use server on and assigns the variable app to express object
 const app = express()
 
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/auth'
 const PORT = process.env.PORT || 5000
+let uri = process.env.MONGODB_URI;
+
+/* Using app.use to use the bodyParser module I'm importing. Helps with parsing the res.body to json object so it can be rendered and manipulated
+through client */
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(cors())
+// Helmet helps apply sercurity to application by adding http headers on the responses.
+app.use(helmet())
 
 
 if (process.env.NODE_ENV === "production") {
@@ -26,16 +33,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose.set('useCreateIndex', true)
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "eCommerce" }, (err) => {
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "eCommerce" }, (err) => {
     console.log(err || 'Connected to MongoDB')
 })
-/* Using app.use to use the bodyParser module I'm importing. Helps with parsing the res.body to json object so it can be rendered and manipulated
-through client */
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use(cors())
-// Helmet helps apply sercurity to application by adding http headers on the responses.
-app.use(helmet())
+
 
 // Create variable with file, then use that variable with morgan to write stream log in file.
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
@@ -57,6 +58,12 @@ app.use("/api", contact)
 app.use("/api/users", usersAPI)
 // app.use("/api", newContact)
 app.use('/', rootAPI)
+
+
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 
 // App will be placed on the port variable made on line 13
 app.listen(PORT, () => {
