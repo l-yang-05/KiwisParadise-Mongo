@@ -12,7 +12,7 @@ const User = () => {
         try {
             const res = await fetch("api/users", {
                 method: 'GET',
-                headers: { token: token },
+                headers: { token: token }
             });
             const text = await res.text();
             console.log("hi---", text)
