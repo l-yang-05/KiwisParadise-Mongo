@@ -21,12 +21,10 @@ through client */
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// app.use(cors())
+app.use(cors())
 // Helmet helps apply sercurity to application by adding http headers on the responses.
 app.use(helmet())
-app.use(cors({
-    origin: 'http://yourapp.com'
-}));
+
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
