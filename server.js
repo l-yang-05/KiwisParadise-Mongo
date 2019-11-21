@@ -20,18 +20,13 @@ let uri = process.env.MONGODB_URI;
 through client */
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-// app.use(cors({ origin: 'http://localhost:8888' }));
+
 // app.use(cors())
 // Helmet helps apply sercurity to application by adding http headers on the responses.
 app.use(helmet())
-app.use(function (req, res, next) {
-    var allowedOrigins = ['http://localhost:5000'];
-    var origin = req.headers.origin;
-    if (allowedOrigins.indexOf(origin) > -1) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    return next();
-});
+app.use(cors({
+    origin: 'http://yourapp.com'
+}));
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
