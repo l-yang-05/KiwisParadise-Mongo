@@ -6,7 +6,8 @@ const verifyToken = require('../auth').verifyToken
 const usersRouter = new express.Router()
 const router = new express.Router()
 const Products = require('../models/products')
-
+const User = require('../models/users')
+const Contacts = require('../models/contacts')
 
 usersRouter.route('/').get(usersCtrl.index)
 
@@ -26,7 +27,7 @@ router.get('/products', async (req, res) => {
 
 router.get('/contacts', async (req, res) => {
     try {
-        let contact = await contacts.find();
+        let contact = await Contacts.find();
         return res.send(contact)
     }
     catch (err) {
@@ -40,7 +41,7 @@ usersRouter.use(verifyToken)
 
 usersRouter.get('/users', async (req, res) => {
     try {
-        let user = await users.find();
+        let user = await User.find();
         return res.send(user)
     }
     catch (err) {
@@ -50,7 +51,7 @@ usersRouter.get('/users', async (req, res) => {
 
 usersRouter.route('/api/users', async (req, res) => {
     try {
-        let user = await users.find();
+        let user = await User.find();
         return res.send(user)
 
     }
@@ -74,7 +75,7 @@ usersRouter.route('/api/products', async (req, res) => {
 
 usersRouter.route('/api/contacts', async (req, res) => {
     try {
-        let contact = await contacts.find();
+        let contact = await Contacts.find();
         return res.send(contact)
 
     }
