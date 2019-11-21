@@ -65,6 +65,28 @@ usersRouter.get('/api/users', async (req, res) => {
 })
 
 
+usersRouter.get('/api/products', async (req, res) => {
+    try {
+        let product = await Products.find();
+        return res.send(product)
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
+usersRouter.get('/api/contacts', async (req, res) => {
+    try {
+        let contact = await Contacts.find();
+        return res.send(contact)
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 usersRouter.route('/:id').get(usersCtrl.show)
 
 usersRouter.route('/:id').patch(usersCtrl.update)
