@@ -20,10 +20,18 @@ let uri = process.env.MONGODB_URI;
 through client */
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(cors())
+// app.use(cors({ origin: 'http://localhost:8888' }));
+// app.use(cors())
 // Helmet helps apply sercurity to application by adding http headers on the responses.
 app.use(helmet())
-
+app.use(function (req, res, next) {
+    var allowedOrigins = ['http://localhost:5000'];
+    var origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) > -1) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    return next();
+});
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
@@ -50,6 +58,7 @@ const productFilter = require('./routes/productfilter')
 const contact = require('./routes/contact')
 const usersAPI = require('./routes/index')
 // const newContact = require('./routes/apiNewContact')
+
 
 // Use the imported routes so that they can be called on server
 app.use("/api", productsAPI)
