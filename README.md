@@ -1,5 +1,7 @@
 # Kiwi's Paradise eCommerce V2
 
+![Desktop Screenshot](https://github.com/l-yang-05/KiwisParadise-Mongo/blob/master/work/Screen%20Shot%202019-11-21%20at%2012.03.51%20PM.png)
+
 This is my fifth re-edition of my eCommerce website that is centered on selling plushies. This application has three main pages (Home, Products, Contact Us) routed together, with an authenticated protected users page. The home page contains a slider of images. The products page contains items that are pulled from a MongoDB Atlas database. On the products page, the user can filter through the items by type and price. The contact us page contains a form that will validate and take in responses from the user and send them back to the MongoDB Atlas database. Also on this page, at the bottom there is a testimonials section where it displays the comments that are located from the MongoDB Atlas database. The protected authenticated users page will display the list of users that signed up on the application. This website was made by using React.js, CSS, Bootstrap, node, express, and authenticating with JWTs. This application has automated testing through using mocha and chai. The automated testing is running on a parallel server from the express server of the application.
 
 ## Getting Started
