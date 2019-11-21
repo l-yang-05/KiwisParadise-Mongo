@@ -14,6 +14,7 @@
   display: contents;
 }
 
+
 #toggle{
   display: none;
 }
@@ -708,4 +709,16 @@ svg:hover{
   .footer-info {
     font-size: 13px;
   }
+}
+
+
+@media only screen and (min-width: 1440px){
+  .container-auth {
+    height: 700px;
+  }
+
+  .login{
+    height: 50%;
+  }
+
 }

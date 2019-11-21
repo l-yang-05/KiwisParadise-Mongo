@@ -12,6 +12,9 @@
     "build": "cd client && npm run build",
     "test": "cd routes && npm run test"
   },
+  "engines": {
+    "node": "12.13.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/l-yang-05/Kiwis-Paradise-v2.git"
