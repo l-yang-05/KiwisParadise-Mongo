@@ -51,7 +51,6 @@ usersRouter.route('/:id').delete(usersCtrl.destroy)
 router.get('/users', async (req, res) => {
     try {
         let user = await User.find();
-        console.log("Testing ---", User)
         return res.send(user)
     }
     catch (err) {
