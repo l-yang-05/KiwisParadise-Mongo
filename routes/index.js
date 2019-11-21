@@ -50,8 +50,32 @@ usersRouter.get('/users', async (req, res) => {
 
 usersRouter.route('/api/users', async (req, res) => {
     try {
-        let products = await Products.find();
-        return res.send(products)
+        let user = await users.find();
+        return res.send(user)
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
+
+usersRouter.route('/api/products', async (req, res) => {
+    try {
+        let product = await Products.find();
+        return res.send(product)
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
+
+usersRouter.route('/api/contacts', async (req, res) => {
+    try {
+        let contact = await contacts.find();
+        return res.send(contact)
 
     }
     catch (err) {
