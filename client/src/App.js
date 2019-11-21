@@ -6,7 +6,7 @@ import NavBar from './Components/NavBar';
 import LogIn from './Components/Login';
 import LogOut from './Components/Logout';
 import SignUp from './Components/Signup';
-import Users from './Components/Admin/User'
+import User from './Components/Admin/User'
 import Home from './Components/Home'
 import Products from './Components/Products'
 import Contacts from './Components/Contact'
@@ -57,7 +57,7 @@ class App extends React.Component {
 
               <Route path='/users' render={() => {
                 return currentUser
-                  ? <Users />
+                  ? <User />
                   : <Redirect to="/login" />
               }}
               />
