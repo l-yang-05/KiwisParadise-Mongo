@@ -48,9 +48,10 @@ usersRouter.route('/:id').patch(usersCtrl.update)
 
 usersRouter.route('/:id').delete(usersCtrl.destroy)
 
-usersRouter.get('/users', async (req, res) => {
+router.get('/users', async (req, res) => {
     try {
         let user = await User.find();
+        console.log(User)
         return res.send(user)
     }
     catch (err) {
