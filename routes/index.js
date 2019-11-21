@@ -35,6 +35,17 @@ router.get('/contacts', async (req, res) => {
     }
 })
 
+router.post('/contacts', (req, res) => {
+    const body = req.body;
+    Contacts.create(body)
+        .then(user => {
+            res.json(user)
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
 
 usersRouter.post('/authenticate', usersCtrl.authenticate)
 
