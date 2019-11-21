@@ -38,7 +38,7 @@ usersRouter.post('/authenticate', usersCtrl.authenticate)
 
 usersRouter.use(verifyToken)
 
-usersRouter.use('/users', async (req, res) => {
+usersRouter.get('/users', async (req, res) => {
     try {
         let user = await users.find();
         return res.send(user)
@@ -47,6 +47,18 @@ usersRouter.use('/users', async (req, res) => {
         console.log(err)
     }
 })
+
+usersRouter.route('/api/users', async (req, res) => {
+    try {
+        let products = await Products.find();
+        return res.send(products)
+
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 
 usersRouter.route('/:id').get(usersCtrl.show)
 
