@@ -53,17 +53,6 @@ usersRouter.get('/users', async (req, res) => {
     }
 })
 
-router.get('/api/users', async (req, res) => {
-    try {
-        let user = await User.find();
-        return res.send(user)
-
-    }
-    catch (err) {
-        console.log(err)
-    }
-})
-
 
 router.get('/api/products', async (req, res) => {
     try {
