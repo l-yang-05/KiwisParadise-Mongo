@@ -16,7 +16,7 @@ After you have installed all of the dependencies that are needed for this projec
 
 ## Stopping the app
 
-To stop running the server and the react app, you can hit ```command + z``` to close both.
+To stop running the server and the react app, you can hit ```control + z``` to close both.
 
 
 ## Tests
