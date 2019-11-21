@@ -13,8 +13,17 @@ const cors = require('cors')
 // Creating port variable to use server on and assigns the variable app to express object
 const app = express()
 
+
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/auth'
-const PORT = process.env.port || 5000
+const PORT = process.env.PORT || 5000
+
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+    uri = process.env.MONGODB_URI; // connection string for Atlas here
+} else {
+    uri = process.env.MONGODB_URI; // connection string for localhost mongo here
+}
 
 mongoose.set('useCreateIndex', true)
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "eCommerce" }, (err) => {
