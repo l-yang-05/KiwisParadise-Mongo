@@ -37,11 +37,15 @@ router.get('/contacts', async (req, res) => {
 
 usersRouter.post('/authenticate', usersCtrl.authenticate)
 
-
+usersRouter.route('/').get(usersCtrl.index)
 
 usersRouter.use(verifyToken)
 
-usersRouter.route('/').get(usersCtrl.index)
+usersRouter.route('/:id').get(usersCtrl.show)
+
+usersRouter.route('/:id').patch(usersCtrl.update)
+
+usersRouter.route('/:id').delete(usersCtrl.destroy)
 
 usersRouter.get('/users', async (req, res) => {
     try {
@@ -54,32 +58,6 @@ usersRouter.get('/users', async (req, res) => {
 })
 
 
-router.get('/api/products', async (req, res) => {
-    try {
-        let product = await Products.find();
-        return res.send(product)
 
-    }
-    catch (err) {
-        console.log(err)
-    }
-})
-
-router.get('/api/contacts', async (req, res) => {
-    try {
-        let contact = await Contacts.find();
-        return res.send(contact)
-
-    }
-    catch (err) {
-        console.log(err)
-    }
-})
-
-usersRouter.route('/:id').get(usersCtrl.show)
-
-usersRouter.route('/:id').patch(usersCtrl.update)
-
-usersRouter.route('/:id').delete(usersCtrl.destroy)
 
 module.exports = usersRouter
