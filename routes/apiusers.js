@@ -1,5 +1,14 @@
 const router = require('express').Router()
 const Users = require('../models/users')
+const userCtrl = require("../../controllers");
+const verifyToken = require("../../auth").verifyToken
+
+
+router.route("/").post(userCtrl.create);
+router.route("/authenticate").post(userCtrl.authenticate);
+
+router.use(verifyToken)
+
 
 // Defining api route for /api/products
 router.get('/users', (req, res) => {

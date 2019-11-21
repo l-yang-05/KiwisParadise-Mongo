@@ -37,9 +37,9 @@ router.get('/contacts', async (req, res) => {
 
 usersRouter.post('/authenticate', usersCtrl.authenticate)
 
-usersRouter.route('/').get(usersCtrl.index)
-
 usersRouter.use(verifyToken)
+
+usersRouter.route('/').get(usersCtrl.index)
 
 usersRouter.route('/:id').get(usersCtrl.show)
 
