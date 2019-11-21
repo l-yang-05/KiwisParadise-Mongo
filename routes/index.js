@@ -9,7 +9,7 @@ const Products = require('../models/products')
 const User = require('../models/users')
 const Contacts = require('../models/contacts')
 
-usersRouter.route('/').get(usersCtrl.index)
+
 
 usersRouter.route('/').post(usersCtrl.create)
 
@@ -41,7 +41,7 @@ usersRouter.post('/authenticate', usersCtrl.authenticate)
 
 usersRouter.use(verifyToken)
 
-
+usersRouter.route('/').get(usersCtrl.index)
 
 usersRouter.get('/users', async (req, res) => {
     try {
@@ -57,30 +57,6 @@ usersRouter.get('/api/users', async (req, res) => {
     try {
         let user = await User.find();
         return res.send(user)
-
-    }
-    catch (err) {
-        console.log(err)
-    }
-})
-
-
-usersRouter.get('/api/products', async (req, res) => {
-    try {
-        let product = await Products.find();
-        return res.send(product)
-
-    }
-    catch (err) {
-        console.log(err)
-    }
-})
-
-
-usersRouter.get('/api/contacts', async (req, res) => {
-    try {
-        let contact = await Contacts.find();
-        return res.send(contact)
 
     }
     catch (err) {
