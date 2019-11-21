@@ -37,7 +37,11 @@ router.get('/contacts', async (req, res) => {
 
 usersRouter.post('/authenticate', usersCtrl.authenticate)
 
+
+
 usersRouter.use(verifyToken)
+
+
 
 usersRouter.get('/users', async (req, res) => {
     try {
@@ -49,7 +53,7 @@ usersRouter.get('/users', async (req, res) => {
     }
 })
 
-usersRouter.route('/api/users', async (req, res) => {
+usersRouter.get('/api/users', async (req, res) => {
     try {
         let user = await User.find();
         return res.send(user)
@@ -61,7 +65,7 @@ usersRouter.route('/api/users', async (req, res) => {
 })
 
 
-usersRouter.route('/api/products', async (req, res) => {
+usersRouter.get('/api/products', async (req, res) => {
     try {
         let product = await Products.find();
         return res.send(product)
@@ -73,7 +77,7 @@ usersRouter.route('/api/products', async (req, res) => {
 })
 
 
-usersRouter.route('/api/contacts', async (req, res) => {
+usersRouter.get('/api/contacts', async (req, res) => {
     try {
         let contact = await Contacts.find();
         return res.send(contact)
