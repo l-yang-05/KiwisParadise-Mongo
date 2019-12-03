@@ -1,4 +1,4 @@
-# Kiwi's Paradise eCommerce V2
+# Kiwi's Paradise eCommerce V5
 
 ![Desktop Screenshot](https://github.com/l-yang-05/KiwisParadise-Mongo/blob/master/work/Screen%20Shot%202019-11-21%20at%2012.03.51%20PM.png)
 
